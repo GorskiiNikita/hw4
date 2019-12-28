@@ -5,8 +5,7 @@ from settings import PATH_TO_IMAGES
 
 
 def index_page():
-    images = []
     for file in os.walk(PATH_TO_IMAGES):
-        images.append(file[2][0])
+        images = file[2]
 
     return render_template('index.html', images=images)
