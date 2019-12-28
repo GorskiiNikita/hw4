@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея</title>
+</head>
+<body>
+
+<div class="gallery">
+    {% for img in images %}
+    <a href="{{ 'static/img/copyright/' + img }}"><img src="{{ 'static/img/small/' + img }}"></a>
+    {% endfor %}
+</div>
+</body>
+</html>
