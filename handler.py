@@ -10,11 +10,6 @@ class EventHandler(FileSystemEventHandler):
         img_path = 'static/img/'
 
         try:
-            os.rename(f'{img_path}/copyright/{old_img_name}', f'{img_path}/copyright/{new_img_name}')
-        except FileNotFoundError:
-            pass
-
-        try:
             os.rename(f'{img_path}/small/{old_img_name}', f'{img_path}/small/{new_img_name}')
         except FileNotFoundError:
             pass
@@ -26,18 +21,12 @@ class EventHandler(FileSystemEventHandler):
         img_path = 'static/img/'
 
         resize_img(img_name, f'{img_path}/original/', f'{img_path}/small/')
-        add_watermark('ЛЁХА', img_name, f'{img_path}/original/', f'{img_path}/copyright/')
 
         print(event)
 
     def on_deleted(self, event):
         img_name = event.src_path.split('/')[-1]
         img_path = 'static/img/'
-
-        try:
-            os.remove(f'{img_path}/copyright/{img_name}')
-        except FileNotFoundError:
-            pass
 
         try:
             os.remove(f'{img_path}/small/{img_name}')

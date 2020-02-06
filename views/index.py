@@ -5,6 +5,7 @@ from settings import PATH_TO_IMAGES
 
 
 def index_page():
+    images = []
     for file in os.walk(PATH_TO_IMAGES):
         images = file[2]
 
