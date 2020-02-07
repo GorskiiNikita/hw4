@@ -8,7 +8,7 @@
 
 <div class="gallery">
     {% for img in images %}
-    <a href="{{ 'static/img/copyright/' + img }}"><img src="{{ 'static/img/small/' + img }}"></a>
+    <a href="{{ url_for('generate_copyright', img=img) }}"><img src="{{ 'static/img/small/' + img }}"></a>
     {% endfor %}
 </div>
 </body>

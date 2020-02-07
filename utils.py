@@ -1,3 +1,5 @@
+import io
+
 from PIL import Image, ImageFont, ImageDraw
 from settings import K_RESIZE
 
@@ -9,8 +11,8 @@ def resize_img(name, in_path, out_path):
     out.save(out_path+name, img_format)
 
 
-def add_watermark(text, name, in_path, out_path):
-    im = Image.open(in_path + name)
+def add_watermark(path, name, text):
+    im = Image.open(f'{path}/{name}')
     drawing = ImageDraw.Draw(im)
 
     font = ImageFont.truetype("Pillow/Tests/fonts/FreeMono.ttf", 40)
@@ -21,5 +23,8 @@ def add_watermark(text, name, in_path, out_path):
             drawing.text((i, j), text, font=font)
 
     img_format = 'jpeg' if name.split('.')[-1].lower() == 'jpg' else name.split('.')[-1]
-    im.save(out_path + name, img_format)
 
+    imgByteArr = io.BytesIO()
+    im.save(imgByteArr, format=img_format)
+
+    return imgByteArr.getvalue()
